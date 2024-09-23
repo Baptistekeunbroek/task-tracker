@@ -1,5 +1,7 @@
 <div class="task-item" [class.completed]="task.completed">
     <input type="checkbox" [checked]="task.completed" (change)="onToggleCompleted()">
-    {{ task.title }}
-  </div>
-  
+    <span *ngIf="!isEditing">{{ task.title }}</span>
+    <input *ngIf="isEditing" [(ngModel)]="task.title" (blur)="save()" />
+    <button *ngIf="!isEditing" (click)="edit()">Edit</button>
+    <button *ngIf="isEditing" (click)="save()">Save</button>
+</div>
