@@ -7,7 +7,7 @@ import { FormsModule } from '@angular/forms'; // Add this import
     selector: 'app-task-item',
     standalone: true,
     templateUrl: './task-item.component.html',
-    styleUrls: ['./task-item.component.scss'],
+    styleUrls: ['./task-item.component.css'],
     imports: [CommonModule, FormsModule] // Add FormsModule here
 })
 export class TaskItemComponent {

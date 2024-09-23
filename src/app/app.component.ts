@@ -1,15 +1,11 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterModule, RouterOutlet, RouterLink, RouterLinkActive } from '@angular/router';
-import { TaskListComponent } from "./components/task-list/task-list.component";
+import { RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, RouterOutlet, RouterLink, RouterLinkActive, TaskListComponent],
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  imports: [CommonModule, RouterOutlet],
+  template: `<router-outlet></router-outlet>`, // Render routed components here
 })
-export class AppComponent {
-  title = 'Task Tracker';
-}
+export class AppComponent {}

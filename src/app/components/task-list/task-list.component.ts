@@ -8,7 +8,7 @@ import { Task } from '../../task.model';
     selector: 'app-task-list',
     standalone: true,
     templateUrl: './task-list.component.html',
-    styleUrls: ['./task-list.component.scss'],
+    styleUrls: ['./task-list.component.css'],
     imports: [CommonModule, AddTaskComponent, TaskItemComponent] // Add TaskItemComponent here
 })
 export class TaskListComponent implements OnInit {
