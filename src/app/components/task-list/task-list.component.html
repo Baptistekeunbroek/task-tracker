@@ -1,14 +1,18 @@
+<app-navbar></app-navbar>
+
+<div class="top-container">
 <h1>Task Manager</h1>
+<h3>{{ today | date: 'MMM d, y' }}</h3> <!-- Use the date pipe to format -->
 <app-add-task (taskAdded)="onTaskAdded($event)"></app-add-task>
+</div>
 
 <div class="task-columns">
-    <div class="task-column">
-        <h2>To Do</h2>
+    <div class="task-column-todo">
+        <h2 class="TODO">To Do</h2>
         <div *ngFor="let task of toDoTasks" class="task-card">
             <h3>{{ task.title }}</h3>
             <p>{{ task.description }}</p>
-            <p>{{ task.createdAt | date:'short' }}</p>
-            <small>State: {{ task.state }}</small>
+            <small>{{ task.createdAt | date:'medium' }}</small>
             <input type="checkbox" [checked]="task.completed" (change)="toggleTaskCompletion(task.id)">
             <button (click)="removeTask(task.id)">Remove</button>
             <select (change)="updateTaskState(task.id, $event)">
@@ -19,12 +23,12 @@
         </div>
     </div>
 
-    <div class="task-column">
-        <h2>In Progress</h2>
+    <div class="task-column-progress">
+        <h2 class="PROGRESS">In Progress</h2>
         <div *ngFor="let task of inProgressTasks" class="task-card">
             <h3>{{ task.title }}</h3>
             <p>{{ task.description }}</p>
-            <small>State: {{ task.state }}</small>
+            <small>{{ task.createdAt | date:'medium' }}</small>
             <input type="checkbox" [checked]="task.completed" (change)="toggleTaskCompletion(task.id)">
             <button (click)="removeTask(task.id)">Remove</button>
             <select (change)="updateTaskState(task.id, $event)">
@@ -35,12 +39,12 @@
         </div>
     </div>
 
-    <div class="task-column">
-        <h2>Done</h2>
+    <div class="task-column-done">
+        <h2 class="DONE">Done</h2>
         <div *ngFor="let task of doneTasks" class="task-card">
             <h3>{{ task.title }}</h3>
             <p>{{ task.description }}</p>
-            <small>State: {{ task.state }}</small>
+            <small>{{ task.createdAt | date:'medium' }}</small>
             <input type="checkbox" [checked]="task.completed" (change)="toggleTaskCompletion(task.id)">
             <button (click)="removeTask(task.id)">Remove</button>
             <select (change)="updateTaskState(task.id, $event)">

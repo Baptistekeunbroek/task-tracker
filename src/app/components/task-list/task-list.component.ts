@@ -3,17 +3,21 @@ import { CommonModule } from '@angular/common';
 import { AddTaskComponent } from '../add-task/add-task.component';
 import { TaskItemComponent } from '../task-item/task-item.component';
 import { Task } from '../../task.model';
+import { NavbarComponent } from '../../navbar-component/navbar-component.component';
 
 @Component({
     selector: 'app-task-list',
     standalone: true,
     templateUrl: './task-list.component.html',
     styleUrls: ['./task-list.component.css'],
-    imports: [CommonModule, AddTaskComponent, TaskItemComponent]
+    imports: [CommonModule, AddTaskComponent, TaskItemComponent, NavbarComponent]
 })
 export class TaskListComponent implements OnInit {
     tasks: Task[] = [];
     private idCounter: number = 1; // Initialize a counter for unique IDs
+
+    today: Date = new Date(); // Store today's date
+
 
     ngOnInit() {
         this.loadTasks();

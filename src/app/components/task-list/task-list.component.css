@@ -1,20 +1,50 @@
 .task-columns {
     display: flex;
     justify-content: space-around;
+    margin-bottom: 40px;
 }
 
-.task-column {
+.task-column-done {
     flex: 1;
     margin: 0 10px;
+    background-color: #FAEDF5;
+    border-radius: 40px;
 }
+.DONE{
+    color: #ce2290;
+    margin: 20px;
+}
+.task-column-progress {
+    flex: 1;
+    margin: 0 10px;
+    background-color: #F0F0FF;
+    border-radius: 40px;
+}
+.PROGRESS{
+    color: #3535dc;
+    margin: 20px;
+}
+
+.task-column-todo {
+    flex: 1;
+    margin: 0 10px;
+    background-color: #FDF8EA;
+    border-radius: 40px;
+}
+
+.TODO{
+    color: #ecb625;
+    margin: 20px;
+}
+
 
 .task-card {
     border: 1px solid #ccc;
-    border-radius: 8px;
+    border-radius: 20px;
     padding: 16px;
-    margin: 8px 0;
-    background-color: #f9f9f9;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin: 20px;
+    background-color: #fcfcfe;
+    border: none;
 }
 
 .task-card h3 {
@@ -30,4 +60,11 @@
     margin: 0 0 8px;
     font-size: 0.9em;
     color: #555;
+}
+
+.top-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
 }
