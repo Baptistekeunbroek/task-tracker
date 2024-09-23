@@ -12,5 +12,14 @@
     padding: 10px 20px;
     font-size: 16px;
     cursor: pointer;
+    border-radius: 20px;
+    border: none;
+    background-color: #4669E2;
+    color: white;
+  }
+
+  button:hover {
+    background-color: #bcd6f2;
+    color: #4669E2;
   }
   

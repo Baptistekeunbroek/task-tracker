@@ -4,13 +4,15 @@ import { AddTaskComponent } from '../add-task/add-task.component';
 import { TaskItemComponent } from '../task-item/task-item.component';
 import { Task } from '../../task.model';
 import { NavbarComponent } from '../../navbar-component/navbar-component.component';
+import { FormsModule } from '@angular/forms'; // Import FormsModule
+
 
 @Component({
     selector: 'app-task-list',
     standalone: true,
     templateUrl: './task-list.component.html',
     styleUrls: ['./task-list.component.css'],
-    imports: [CommonModule, AddTaskComponent, TaskItemComponent, NavbarComponent]
+    imports: [CommonModule, AddTaskComponent, TaskItemComponent, NavbarComponent, FormsModule]
 })
 export class TaskListComponent implements OnInit {
     tasks: Task[] = [];
@@ -68,6 +70,12 @@ export class TaskListComponent implements OnInit {
             this.saveTasks(); // Persist changes
         }
     }
+
+    saveTask(task: Task): void {
+      task.isEditing = false;  // Exit edit mode
+      this.saveTasks();  // Call to save the tasks, e.g., localStorage or backend
+  }
+  
 
     get toDoTasks(): Task[] {
         return this.tasks.filter(task => task.state === 'To Do');

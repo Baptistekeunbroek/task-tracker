@@ -5,4 +5,5 @@ export interface Task {
     completed: boolean;
     state: "To Do" | "In Progress" | "Done";
     createdAt: Date;
+    isEditing?: boolean;
 }
