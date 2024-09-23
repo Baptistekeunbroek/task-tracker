@@ -29,4 +29,5 @@ export class TaskItemComponent {
         this.isEditing = false;
         this.editTask.emit(this.task);
     }
+    
 }
