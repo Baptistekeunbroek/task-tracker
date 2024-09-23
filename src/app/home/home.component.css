@@ -22,4 +22,13 @@
     background-color: #bcd6f2;
     color: #4669E2;
   }
+
+  .personal-info{
+    background-color: #bcd6f2 ;
+    display: flex;
+    flex-direction: column;
+    justify-content:flex-start;
+    align-items: center;
+    margin-top: 50px;
+  }
   
