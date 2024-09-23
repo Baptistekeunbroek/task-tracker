@@ -1,16 +1,33 @@
 .task-columns {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
 }
 
 .task-column {
     flex: 1;
     margin: 0 10px;
-    border: 1px solid #ccc;
-    padding: 10px;
-    border-radius: 5px;
 }
 
-.task-column h2 {
-    text-align: center;
+.task-card {
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 16px;
+    margin: 8px 0;
+    background-color: #f9f9f9;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.task-card h3 {
+    margin: 0 0 8px;
+}
+
+.task-card p {
+    margin: 0 0 8px;
+}
+
+.task-card small {
+    display: block;
+    margin: 0 0 8px;
+    font-size: 0.9em;
+    color: #555;
 }

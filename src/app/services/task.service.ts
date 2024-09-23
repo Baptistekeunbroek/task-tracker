@@ -6,8 +6,6 @@ import { Task } from '../task.model';
 })
 export class TaskService {
   private tasks: Task[] = [
-    { id: 1, title: 'Finish Angular project', completed: false, state: 'To Do' },
-    { id: 2, title: 'Read Go documentation', completed: true, state: 'Done' },
   ];
 
   getTasks(): Task[] {

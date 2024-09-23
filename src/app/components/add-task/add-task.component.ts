@@ -1,24 +1,34 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { Task } from '../../task.model';
 
 @Component({
-  selector: 'app-add-task',
-  standalone: true,
-  templateUrl: './add-task.component.html',
-  styleUrls: ['./add-task.component.css'],
-  imports: [FormsModule]
+    selector: 'app-add-task',
+    standalone: true,
+    templateUrl: './add-task.component.html',
+    styleUrls: ['./add-task.component.css'],
+    imports: [FormsModule]
 })
 export class AddTaskComponent {
-  title: string = '';
+    title: string = '';
+    description: string = '';
+    private idCounter: number = 1;
 
-  // Emit the task to the parent (TaskListComponent)
-  @Output() taskAdded = new EventEmitter<string>();
+    @Output() taskAdded = new EventEmitter<Task>();
 
-  onSubmit(): void {
-    if (this.title.trim()) {
-      console.log('Task added:', this.title);
-      this.taskAdded.emit(this.title);  // Emit the task
-      this.title = ''; // Clear the input field after adding
+    onSubmit(): void {
+        if (this.title.trim()) {
+            const newTask: Task = {
+                id: this.idCounter++,
+                title: this.title,
+                description: this.description,
+                completed: false,
+                state: 'To Do', // Default state for new tasks
+                createdAt: new Date()
+            };
+            this.taskAdded.emit(newTask);
+            this.title = '';
+            this.description = '';
+        }
     }
-  }
 }
