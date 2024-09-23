@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AddTaskComponent } from '../add-task/add-task.component';
+import { Task } from '../../task.model';
 
 @Component({
     selector: 'app-task-list',
@@ -9,14 +10,46 @@ import { AddTaskComponent } from '../add-task/add-task.component';
     styleUrls: ['./task-list.component.scss'],
     imports: [CommonModule, AddTaskComponent]
 })
-export class TaskListComponent {
-    tasks: string[] = ['Task 1', 'Task 2', 'Task 3'];
+export class TaskListComponent implements OnInit {
+    tasks: Task[] = [];
 
-    onTaskAdded(task: string): void {
-        this.tasks.push(task);  // Add the new task to the list
+    ngOnInit() {
+        this.loadTasks();
+    }
+
+    loadTasks(): void {
+        if (typeof window !== 'undefined') {  // Check if running in the browser
+            const storedTasks = localStorage.getItem('tasks');
+            this.tasks = storedTasks ? JSON.parse(storedTasks) : [];
+        }
+    }
+
+    saveTasks(): void {
+        if (typeof window !== 'undefined') {  // Check if running in the browser
+            localStorage.setItem('tasks', JSON.stringify(this.tasks));
+        }
+    }
+
+    onTaskAdded(taskTitle: string): void {
+        const newTask: Task = {
+            id: this.tasks.length + 1,
+            title: taskTitle,
+            completed: false
+        };
+        this.tasks.push(newTask);
+        this.saveTasks();
+    }
+
+    toggleTaskCompletion(taskId: number): void {
+        const task = this.tasks.find(t => t.id === taskId);
+        if (task) {
+            task.completed = !task.completed;
+            this.saveTasks();
+        }
     }
 
     removeTask(index: number): void {
-        this.tasks.splice(index, 1);  // Remove the task from the list
+        this.tasks.splice(index, 1);
+        this.saveTasks();
     }
 }
