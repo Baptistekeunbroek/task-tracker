@@ -1,1 +1,26 @@
-/* You can add global styles to this file, and also import other style files */
+body {
+    font-family: Arial, sans-serif;
+  }
+  
+  .container {
+    width: 50%;
+    margin: 0 auto;
+  }
+  
+  h1 {
+    text-align: center;
+  }
+  
+  .task-item {
+    padding: 10px;
+    border: 1px solid #ccc;
+    margin: 5px 0;
+    display: flex;
+    align-items: center;
+  }
+  
+  .completed {
+    text-decoration: line-through;
+    color: gray;
+  }
+  

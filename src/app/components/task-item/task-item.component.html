@@ -1,0 +1,5 @@
+<div class="task-item" [class.completed]="task.completed">
+    <input type="checkbox" [checked]="task.completed" (change)="onToggleCompleted()">
+    {{ task.title }}
+  </div>
+  
