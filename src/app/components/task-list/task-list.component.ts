@@ -4,8 +4,8 @@ import { AddTaskComponent } from '../add-task/add-task.component';
 import { TaskItemComponent } from '../task-item/task-item.component';
 import { Task } from '../../task.model';
 import { NavbarComponent } from '../../navbar-component/navbar-component.component';
-import { FormsModule } from '@angular/forms'; // Import FormsModule
-
+import { FormsModule } from '@angular/forms';
+import { AuthService } from '../../services/auth.service'; // Import AuthService
 
 @Component({
     selector: 'app-task-list',
@@ -17,9 +17,9 @@ import { FormsModule } from '@angular/forms'; // Import FormsModule
 export class TaskListComponent implements OnInit {
     tasks: Task[] = [];
     private idCounter: number = 1; // Initialize a counter for unique IDs
-
     today: Date = new Date(); // Store today's date
 
+    constructor(private authService: AuthService) {} // Inject AuthService
 
     ngOnInit() {
         this.loadTasks();
@@ -29,6 +29,11 @@ export class TaskListComponent implements OnInit {
         if (typeof window !== 'undefined') {
             const storedTasks = localStorage.getItem('tasks');
             this.tasks = storedTasks ? JSON.parse(storedTasks) : [];
+            // Filter tasks by current user
+            const currentUserId = this.authService.getCurrentUserId();
+            if (currentUserId) {
+                this.tasks = this.tasks.filter(task => task.userId === Number(currentUserId));
+            }
             // Determine the highest ID to ensure unique IDs
             this.idCounter = this.tasks.length > 0 ? Math.max(...this.tasks.map(task => task.id)) + 1 : 1;
         }
@@ -42,6 +47,7 @@ export class TaskListComponent implements OnInit {
 
     onTaskAdded(newTask: Task): void {
         newTask.id = this.idCounter++; // Assign a unique ID
+        newTask.userId = this.authService.getCurrentUserId() || 0; // Assign current user's ID
         this.tasks.push(newTask);
         this.saveTasks();
     }
@@ -74,9 +80,8 @@ export class TaskListComponent implements OnInit {
     saveTask(task: Task): void {
       task.isEditing = false;  // Exit edit mode
       this.saveTasks();  // Call to save the tasks, e.g., localStorage or backend
-  }
+    }
   
-
     get toDoTasks(): Task[] {
         return this.tasks.filter(task => task.state === 'To Do');
     }

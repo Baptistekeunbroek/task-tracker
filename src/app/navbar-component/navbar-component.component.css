@@ -1,27 +1,60 @@
 .navbar {
-    background-color: #E2EDF9;
-    padding: 1rem;
-  }
-  
-  .navbar ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    justify-content: space-between;
-  }
-  
-  .navbar li {
-    display: inline;
-  }
-  
-  .navbar a {
-    color: #4669E2;
-    text-decoration: none;
-    padding: 14px 20px;
-  }
-  
-  .navbar a:hover {
-    background-color: #bcd6f2;
-  }
-  
+  background-color: #E2EDF9;
+  padding: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* Ensures space between logo + nav-links and profile-link */
+}
+
+.navbar ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+}
+
+.navbar li {
+  display: inline;
+}
+
+.navbar ul a {
+  color: #4669E2;
+  text-decoration: none;
+  padding: 14px 20px;
+  border-radius: 20px;
+}
+
+.navbar a:hover {
+  background-color: #bcd6f2;
+}
+
+.logo {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-image: url('../../assets/bk_no_bg.png');
+  background-size: contain;
+  background-position: center;
+}
+
+.logo:hover {
+  background-color: #bcd6f2;
+  cursor: pointer;
+}
+
+/* Align the nav-links next to the logo */
+.nav-links {
+  flex-grow: 1; /* Takes up remaining space */
+}
+
+/* Profile link stays on the far right */
+.profile-link {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+}
+
+.profile-link li {
+  display: inline;
+}
