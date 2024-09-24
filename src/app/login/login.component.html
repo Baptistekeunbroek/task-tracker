@@ -1,14 +1,19 @@
 <app-navbar></app-navbar>
-<div>
-    <h2 *ngIf="isLoginMode">Login</h2>
-    <h2 *ngIf="!isLoginMode">Sign Up</h2>
-    <input [(ngModel)]="username" placeholder="Username">
-    <input [(ngModel)]="password" placeholder="Password" type="password">
-    <button (click)="isLoginMode ? login() : signup()">
+
+<div class="login-container">
+    <h2 class="login-title" *ngIf="isLoginMode">Login</h2>
+    <h2 class="signup-title" *ngIf="!isLoginMode">Sign Up</h2>
+    
+    <input [(ngModel)]="username" class="input-field" placeholder="Username">
+    <input [(ngModel)]="password" class="input-field" placeholder="Password" type="password">
+    
+    <button class="submit-button" (click)="isLoginMode ? login() : signup()">
         {{ isLoginMode ? 'Login' : 'Sign Up' }}
     </button>
-    <button (click)="toggleMode()">
+    
+    <button class="toggle-button" (click)="toggleMode()">
         Switch to {{ isLoginMode ? 'Sign Up' : 'Login' }}
     </button>
-    <p *ngIf="errorMessage">{{ errorMessage }}</p>
+    
+    <p class="error-message" *ngIf="errorMessage">{{ errorMessage }}</p>
 </div>

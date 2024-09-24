@@ -1,9 +1,9 @@
 <app-navbar></app-navbar>
 
-<div>
-  <h2>User Profile</h2>
-  <p>Username: {{ user.username }}</p>
-  <p>Password: {{ user.password }}</p> <!-- Displaying password is not recommended in practice -->
+<div class="profile-container">
+  <h2 class="profile-title">User Profile</h2>
+  <p class="profile-info">Username: {{ user.username }}</p>
+  <p class="profile-info">Password: {{ user.password }}</p> <!-- Displaying password is not recommended in practice -->
 
-  <button *ngIf="isLoggedIn" (click)="disconnect()">Disconnect</button>
+  <button *ngIf="isLoggedIn" class="disconnect-button" (click)="disconnect()">Disconnect</button>
 </div>
