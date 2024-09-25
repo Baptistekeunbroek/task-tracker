@@ -16,10 +16,11 @@ import { AuthService } from '../../services/auth.service'; // Import AuthService
 })
 export class TaskListComponent implements OnInit {
     tasks: Task[] = [];
-    private idCounter: number = 1; // Initialize a counter for unique IDs
-    today: Date = new Date(); // Store today's date
+    private idCounter: number = 1;
+    today: Date = new Date();
+    searchTerm: string = ''; 
 
-    constructor(private authService: AuthService) {} // Inject AuthService
+    constructor(private authService: AuthService) {}
 
     ngOnInit() {
         this.loadTasks();
@@ -29,14 +30,25 @@ export class TaskListComponent implements OnInit {
         if (typeof window !== 'undefined') {
             const storedTasks = localStorage.getItem('tasks');
             this.tasks = storedTasks ? JSON.parse(storedTasks) : [];
-            // Filter tasks by current user
             const currentUserId = this.authService.getCurrentUserId();
             if (currentUserId) {
                 this.tasks = this.tasks.filter(task => task.userId === Number(currentUserId));
             }
-            // Determine the highest ID to ensure unique IDs
             this.idCounter = this.tasks.length > 0 ? Math.max(...this.tasks.map(task => task.id)) + 1 : 1;
         }
+    }
+
+    get filteredTasks(): Task[] {
+        if (!this.searchTerm.trim()) {
+          return this.tasks;
+        }
+    
+        const term = this.searchTerm.toLowerCase();
+        return this.tasks.filter((task) => {
+          const taskIdMatch = task.id.toString().includes(term);
+          const taskTitleMatch = task.title.toLowerCase().includes(term);
+          return taskIdMatch || taskTitleMatch;
+        });
     }
 
     saveTasks(): void {
@@ -83,14 +95,14 @@ export class TaskListComponent implements OnInit {
     }
   
     get toDoTasks(): Task[] {
-        return this.tasks.filter(task => task.state === 'To Do');
+        return this.filteredTasks.filter(task => task.state === 'To Do');
     }
 
     get inProgressTasks(): Task[] {
-        return this.tasks.filter(task => task.state === 'In Progress');
+        return this.filteredTasks.filter(task => task.state === 'In Progress');
     }
 
     get doneTasks(): Task[] {
-        return this.tasks.filter(task => task.state === 'Done');
+        return this.filteredTasks.filter(task => task.state === 'Done');
     }
 }

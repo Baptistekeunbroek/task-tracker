@@ -79,3 +79,16 @@ select{
     border-radius: 10px;
     color: #F0F0FF;
 }
+
+.task-search-bar {
+    padding: 8px;
+    border: none;
+    background-color: #e2edf9;
+    border-radius: 20px;
+    width: 100%;
+    max-width: 300px;
+  }
+  
+  .task-search-bar::placeholder{
+    color: #4669e2;
+  }

@@ -3,6 +3,13 @@
   <div class="top-container">
     <h1>Task Manager</h1>
     <h3>{{ today | date : "MMM d, y" }}</h3>
+
+    <input
+    type="text"
+    placeholder="Search by Task ID or Title..."
+    [(ngModel)]="searchTerm"
+    class="task-search-bar"
+  />
     <!-- Use the date pipe to format -->
     <app-add-task (taskAdded)="onTaskAdded($event)"></app-add-task>
   </div>
