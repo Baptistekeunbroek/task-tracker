@@ -3,7 +3,7 @@
 <div class="profile-container">
   <h2 class="profile-title">User Profile</h2>
   <p class="profile-info">Username: {{ user.username }}</p>
-  <p class="profile-info">Password: {{ user.password }}</p> <!-- Displaying password is not recommended in practice -->
+  <p class="profile-info">Logged In: {{ isLoggedIn }}</p> <!-- Displaying password is not recommended in practice -->
 
   <button *ngIf="isLoggedIn" class="disconnect-button" (click)="disconnect()">Disconnect</button>
 </div>
